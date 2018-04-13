@@ -88,9 +88,17 @@ function gameOver() {
 $(startButton).on(click, function () {
     $("#quizBody").html();
     for (i = 0; i < triviaQuizArray.length; i++) {
+
+        // Generates question
         function generateQuestion() {
             $("#quizBody").html("");
-            $("#quizBody").appendText("<h2>" + triviaQuizArray[i].question + "</h2><form><div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" id=\"answer" + i + "-1\" value=\"true\"><label class=\"form-check-label\" for=\"answer" + i + "-1\">" + triviaQuizArray[i].answers[0] + "</label></div><div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" id=\"answer" + i + "-1\" value=\"true\"><label class=\"form-check-label\" for=\"answer" + i + "-1\">" + triviaQuizArray[i].answers[1] + "</label></div><div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" id=\"answer" + i + "-1\" value=\"true\"><label class=\"form-check-label\" for=\"answer" + i + "-1\">" + triviaQuizArray[i].answers[2] + "</label></div><div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" id=\"answer" + i + "-1\" value=\"true\"><label class=\"form-check-label\" for=\"answer" + i + "-1\">" + triviaQuizArray[i].answers[3] + "</label></div></form>");
+            $("#quizBody").appendText("<h2>" + triviaQuizArray[i].question + "</h2><form id=\"answerBay" + i + "\"></form>"
+
+            // Generates answer bay [Buggy, in progress]
+            for (j = 0; j < triviaQuizArray[i].answers.length; j++) {
+                $("#answerBay"+ i)
+                <div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" id=\"answer" + i + "-1\" value=\"true\"><label class=\"form-check-label\" for=\"answer" + i + "-" + j + "\">" + triviaQuizArray[i].answers[j] + "</label></div>");
+            }
         }
     }
 })
