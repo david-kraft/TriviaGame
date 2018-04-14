@@ -125,9 +125,6 @@ $(document).ready(function () {
             // Clears out the space where the start game was.
             $("#quizBody").empty();
 
-
-            $("quizBody").append(question);
-
             // Generates question
             $("#quizBody").append(<h2></h2>)
             $(<h2></h2>).append(triviaQuizArray[i].question)
