@@ -1,6 +1,36 @@
 $(document).ready(function () {
 
     var triviaQuizArray = [];
+    var score = 0;
+    var timer = {
+
+        // Set timer to 90 seconds
+        time: 1000 * 90,
+
+        // Write function to countdown
+        countDown: function () {
+
+            // Decrement time by 1, remember we cant use "this" here.
+            timer.time--;
+            var converted = timer.timeConverter(timer.time);
+        },
+
+        // Converts time into a displayable countdown
+        timeConverter: function (t) {
+
+            // Declaring local variable
+            var seconds = Math.floor(t);
+        }, /* End of timeConverter */
+        timeUp: function () {
+
+            // Empties the quizBody div and replaces it with a Game over alert
+            $("#quizBody").empty();
+            $("#quizBody").append(<div class="alert-danger" > Game over!</div>)
+
+            // Resets timer
+            timer.time = 0
+        }
+    };/* End of timer object */
 
     // Pushing the quiz into the triviaQuizArray
     triviaQuizArray.push(
@@ -82,10 +112,11 @@ $(document).ready(function () {
     );
 
 
-    function gameOver() {
-        $("#quizBody").empty()
-        $("#quizBody").html("<div class=\"alert-danger\">Game over!</div><div><button type=\"button\" class=\"btn btn-primary\">Restart Game</button></div>")
-    }
+    $("#quizBody").append(<div><button type="button" class="btn btn-primary">Restart Game</button></div>);
+    timer.time = 0
+
+    // Game over function
+
 
     $("#startButton").click(function () {
         $("#quizBody").html();
@@ -101,7 +132,6 @@ $(document).ready(function () {
             $("#quizBody").append(<h2></h2>)
             $(<h2></h2>).append(triviaQuizArray[i].question)
 
-            $("#quizBody").append(<form></form>);
 
             // Generates answer bay [Buggy, in progress]
             for (j = 0; j < triviaQuizArray[i].answers.length; j++) {
@@ -112,13 +142,17 @@ $(document).ready(function () {
                 )
                 $(<div></div>).append(triviaQuizArray[i].answers[j])
             };
+            $(<form></form>).append(<button type="submit" class="btn btn-primary">Submit</button>);
         };
-        $("#quizBody").append(<button></button>);
     });
+
     // Calculating quiz result
+    $(":submit").click(function myFunction() {
 
+        // Gathering the responses
+        responses = $(document).filter(checked === true);
 
-    document.getElementById("quizBody");
-    // Start timer
-
+        // Gathering the correct answers
+        score = $(responses).filter(triviaQuizArray.answers.value === true);
+    });
 });
